@@ -35,7 +35,8 @@ window.SITE = {
   regioes: "",                          // tipo "Ribeirão Preto e região", ainda falta a cliente confirmar
   sobre: "",                            // trajetória e formação. quando eu deixo uma linha em branco no meio, vira outro parágrafo no site
   especializacao: "",                   // só vou preencher se ela tiver o título, porque pela regra da OAB não pode dizer especialista sem ter
-  foto: "",                             // quando a foto chegar vai ficar "assets/img/foto-dayara.jpg"
+  foto: "assets/img/foto-dayara.jpg",                // escolhi a foto em pé porque ela olha pra frente, como se olhasse pra quem abre o site
+  fotoCelular: "assets/img/foto-dayara-rosto.jpg",   // no celular a foto fica pequena, então uso um recorte só do rosto e dos ombros
 
   areas: [  // coloquei previdenciário primeiro porque é a área principal dela, e o planejamento logo depois pra ele aparecer bem
     { titulo: "Direito Previdenciário", texto: "Aposentadorias, benefícios do INSS e pensão por morte, do pedido à revisão." },

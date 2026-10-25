@@ -112,7 +112,11 @@
     var imagem = figura.querySelector('img');
     var vazia = figura.querySelector('.foto-vazia');
     if (caminhoFoto && imagem) {
-      imagem.src = caminhoFoto;
+      var fotoCelular = txt(S.fotoCelular) || caminhoFoto;
+      var telaCelular = window.matchMedia('(max-width: 760px)');
+      var escolherFoto = function () { imagem.src = telaCelular.matches ? fotoCelular : caminhoFoto; };
+      escolherFoto();
+      if (telaCelular.addEventListener) telaCelular.addEventListener('change', escolherFoto);
       imagem.hidden = false;
       if (vazia) vazia.hidden = true;
     } else if (!rascunho) {
