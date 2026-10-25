@@ -1,0 +1,37 @@
+# o repositório do site é público, então tudo que está aqui eu bloqueei pra não ir pro github
+
+# planilha, documento e exportação eu bloqueei porque pode ter dado de cliente, financeiro ou contrato
+*.xlsx
+*.xls
+*.ods
+*.csv
+*.docx
+*.doc
+# se um dia eu precisar subir um pdf no site, apago a linha de baixo (o comentário não pode ficar na mesma linha, senão o git para de bloquear)
+*.pdf
+
+# senha, chave e configuração local eu nunca posso subir
+.env
+.env.*
+*.key
+*.pem
+senhas*
+credenciais*
+
+# nessas pastas eu guardo coisa que não é do site, tipo arquivo original, rascunho, backup e material de cliente
+privado/
+originais/
+rascunhos/
+backup/
+clientes/
+
+# arquivo compactado também fica de fora, inclusive os zips de atualização que eu baixo
+*.zip
+*.rar
+*.7z
+
+# esses o windows, o mac e o vs code criam sozinhos
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

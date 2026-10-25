@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+  Dayara Alves Advocacia · site
+  Autor: Diego · github.com/diego-dba
+  Versão 1.0 · outubro de 2026
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de privacidade | Dayara Alves Advocacia</title>
+  <meta name="description" content="Como o site da Dra. Dayara Alves trata dados pessoais.">
+  <link rel="canonical" href="https://dayara.adv.br/politica-de-privacidade.html">
+  <meta name="theme-color" content="#151618">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="config.js" defer></script>  <!-- uso o mesmo config.js do index, assim nome, oab e telefone ficam iguais nas duas páginas -->
+  <script src="assets/js/site.js" defer></script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">  <!-- mesmo topo do index, só que no lugar do menu fica o botão de voltar -->
+    <div class="envoltorio topo__barra">
+      <a class="topo__marca" href="index.html" aria-label="Dayara Alves Advocacia, página inicial">
+        <picture>
+          <source srcset="assets/img/logo-dayara-alves.webp" type="image/webp">
+          <img src="assets/img/logo-dayara-alves.png" width="840" height="228" alt="Dayara Alves Advocacia">
+        </picture>
+      </a>
+      <nav aria-label="Navegação">
+        <a class="topo__voltar" href="index.html">Voltar<span class="topo__voltar-extra"> ao site</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="texto-legal">  <!-- texto da política. a cliente ainda precisa revisar antes de eu divulgar o site -->
+    <div class="envoltorio">
+      <h1>Política de privacidade</h1>
+      <p class="atualizacao">Atualizada em outubro de 2026.</p>  <!-- se eu mudar o texto, atualizo essa data -->
+
+      <p>Este site apresenta o trabalho da <span data-campo="tratamento"></span> <span data-campo="nome"></span>, advogada inscrita na <span data-campo="oab"></span>, responsável pelos dados pessoais tratados por meio dele.</p>
+
+      <h2>O que este site coleta</h2>
+      <p>O site não tem formulários, não usa cookies de rastreamento e não usa ferramentas de estatística ou de publicidade.</p>
+
+      <h2>Quando você entra em contato</h2>
+      <p>Os botões de WhatsApp, Instagram e e-mail abrem esses serviços, que têm as próprias políticas de privacidade. As informações que você enviar são usadas apenas para responder e prestar o atendimento solicitado, sob sigilo profissional.</p>
+
+      <h2>Conteúdos de outros serviços</h2>
+      <ul>
+        <li>Avisos, vídeos e avaliações exibidos no site vêm de uma planilha do Google. Para carregá-los, o seu navegador acessa os servidores do Google.</li>
+        <li>Os vídeos são do YouTube, no modo de privacidade aprimorada: o vídeo só carrega quando você clica para assistir. A partir daí, o YouTube pode usar cookies conforme a política dele. A imagem de capa de cada vídeo vem dos servidores do YouTube.</li>
+        <li>As avaliações exibidas foram escritas pelos próprios clientes em outras plataformas, aparecem com autorização e com link para a publicação original.</li>
+      </ul>
+
+      <h2>Hospedagem</h2>
+      <p>O provedor de hospedagem pode registrar dados técnicos de acesso, como endereço IP, data, hora e navegador, para manter o site seguro e funcionando.</p>
+
+      <h2>Seus direitos</h2>
+      <!-- o telefone e o e-mail vêm do config.js. na versão final, se o e-mail estiver vazio, o pedaço "ou pelo e-mail" some -->
+      <p>Pela Lei Geral de Proteção de Dados (Lei nº 13.709/2018, art. 18), você pode pedir a confirmação, o acesso, a correção ou a eliminação dos seus dados, entre outros direitos. Para isso, fale pelo WhatsApp <a href="index.html#contato" data-link="whatsapp" data-campo="telefone" target="_blank" rel="noopener"></a><span class="se-email"> ou pelo e-mail <a href="#" data-link="email" data-campo="email" data-ocultar=".se-email" data-rotulo="e-mail (opcional)"></a></span>.</p>
+    </div>
+  </main>
+
+  <footer class="rodape">  <!-- rodapé igual ao do index -->
+    <div class="envoltorio rodape__grade">
+      <a class="rodape__marca" href="index.html" aria-label="Página inicial">
+        <picture>
+          <source srcset="assets/img/logo-dayara-alves.webp" type="image/webp">
+          <img src="assets/img/logo-dayara-alves.png" width="840" height="228" alt="Dayara Alves Advocacia" loading="lazy">
+        </picture>
+      </a>
+      <div class="rodape__dados">
+        <p><span data-campo="tratamento"></span> <span data-campo="nome"></span>, advogada</p>
+        <p><span data-campo="oab"></span>, <span data-campo="cidade"></span></p>
+      </div>
+      <p><a href="index.html">Página inicial</a></p>
+      <p class="rodape__final">© <span data-ano></span> <span data-campo="marca"></span>. <span data-campo="creditoDesenvolvedor" data-opcional></span></p>
+    </div>
+  </footer>
+</body>
+</html>

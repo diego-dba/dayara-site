@@ -1,0 +1,625 @@
+/*
+ * Dayara Alves Advocacia · site
+ * Autor: Diego · github.com/diego-dba
+ * Versão 1.0 · outubro de 2026
+ */
+
+/* as cores do site eu tirei da logo dela: carvão, dourado e vinho.
+   quando quero deixar todos os textos maiores ou menores de uma vez, eu mudo só o --escala ali embaixo */
+
+@font-face {  /* montserrat, a fonte dos textos. deixei as fontes dentro do site pra não depender do google fonts */
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;   /* com o swap o texto aparece na hora com outra fonte e troca quando a montserrat carrega */
+}
+@font-face {  /* cormorant garamond, a fonte dos títulos */
+  font-family: "Cormorant Garamond";
+  src: url("../fonts/cormorant-garamond-latin-wght-normal.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {  /* a mesma cormorant em itálico, que eu uso nas avaliações */
+  font-family: "Cormorant Garamond";
+  src: url("../fonts/cormorant-garamond-latin-wght-italic.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {  /* variáveis com as cores e medidas que eu uso no site todo, mudando aqui muda em tudo */
+  --escala: 95%;              /* deixei 95% porque no meu notebook de 13" achei melhor assim */
+  --carvao: #151618;          /* usei a mesma cor do fundo da logo 3D pra ela parecer recortada na faixa, por isso não mudo */
+  --carvao-linha: #2B2C31;    /* uso nas linhas finas em cima do fundo escuro */
+  --ouro: #B08D4C;            /* o dourado eu uso nas linhas e nos detalhes */
+  --ouro-escuro: #8A6A30;
+  --ouro-claro: #D9BD86;
+  --vinho: #6E1D33;           /* o vinho eu uso nos botões e nos links */
+  --vinho-escuro: #531525;
+  --vinho-claro: #FBF4F5;
+  --tinta: #1D1C21;           /* cor do texto, quase preto */
+  --texto-suave: #55504A;     /* texto mais clarinho, pros textos de apoio */
+  --papel: #FFFFFF;
+  --linho: #F5F0E8;           /* o bege que eu uso pra intercalar as seções */
+  --linha: #E3D9C9;
+  --largura: 1120px;          /* largura máxima do conteúdo, pra não esticar demais em tela grande */
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;   /* fonte dos títulos */
+  --sans: "Montserrat", "Segoe UI", Arial, sans-serif;                /* fonte dos textos */
+  --altura-topo: 84px;
+}
+@media (max-width: 760px) {  /* no celular eu deixo o topo mais baixo */
+  :root { --altura-topo: 68px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }   /* faz a borda e o padding contarem dentro da largura, assim nada estoura a tela */
+
+html {
+  font-size: var(--escala);
+  scroll-behavior: smooth;                               /* rolagem suave quando a pessoa clica no menu */
+  scroll-padding-top: calc(var(--altura-topo) + 16px);   /* sem isso o título da seção fica escondido atrás do topo fixo */
+  -webkit-text-size-adjust: 100%;                        /* pro iphone não aumentar o texto sozinho quando vira a tela */
+}
+@media (prefers-reduced-motion: reduce) {  /* se a pessoa desativou as animações no aparelho, eu tiro a rolagem suave */
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 1.0625rem;   /* dá 17px quando a escala está em 100% */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }   /* assim a imagem nunca fica maior que a tela */
+a { color: var(--vinho); text-underline-offset: 3px; }
+a:hover { color: var(--vinho-escuro); }
+[hidden] { display: none !important; }   /* garante que o que o site.js esconde fica escondido mesmo */
+
+:focus-visible { outline: 3px solid var(--vinho); outline-offset: 3px; border-radius: 4px; }   /* contorno de quem navega pelo teclado, deixei bem visível pra acessibilidade */
+.topo :focus-visible, .rodape :focus-visible { outline-color: var(--ouro-claro); }   /* no fundo escuro o vinho quase não aparece, então lá eu uso dourado */
+
+.envoltorio {  /* caixa que centraliza o conteúdo e deixa 16px de cada lado no celular */
+  width: min(100% - 32px, var(--largura));
+  margin-inline: auto;
+}
+
+.pular {  /* link "pular para o conteúdo", fica escondido lá em cima e só aparece quando a pessoa aperta tab */
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--papel);
+  color: var(--vinho);
+  font-weight: 600;
+  border-radius: 6px;
+}
+.pular:focus { top: 16px; }
+
+.faixa-rascunho {  /* faixa amarela do modo rascunho, some quando eu troco o modoRascunho pra false */
+  margin: 0;
+  padding: 8px 16px;
+  background: #FFF4D6;
+  color: #5C3F0B;
+  border-bottom: 1px dashed #B07A2A;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+.preencher {  /* os quadradinhos de [PREENCHER], que também somem na versão final */
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1.5px dashed #B07A2A;
+  border-radius: 4px;
+  background: #FFF6E0;
+  color: #5C3F0B;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.topo {  /* deixei só o topo escuro e o resto claro, com a mesma cor do fundo da logo 3D pra ela parecer recortada na faixa */
+  position: sticky;   /* fica grudado lá em cima quando a pessoa rola a página */
+  top: 0;
+  z-index: 50;
+  background: var(--carvao);
+  border-bottom: 2px solid var(--ouro);
+}
+.topo__barra {
+  height: var(--altura-topo);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* logo na esquerda e menu na direita */
+  gap: 24px;
+}
+.topo__marca { display: block; flex: none; }
+.topo__marca img {
+  height: calc(var(--altura-topo) - 12px);   /* a logo acompanha a altura do topo */
+  width: auto;
+}
+
+.menu {  /* menu do computador, tudo numa linha só */
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.menu a {
+  color: #EDE5D6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;   /* não deixa "Áreas de atuação" quebrar em duas linhas */
+}
+.menu a:hover { color: var(--ouro-claro); }
+.menu .menu__whatsapp {  /* coloquei borda dourada no whatsapp pra ele se destacar dos outros links */
+  padding: 9px 18px;
+  border: 1px solid var(--ouro-claro);
+  border-radius: 999px;   /* 999px deixa as pontas totalmente redondas */
+  color: #F3DFAF;
+}
+.menu .menu__whatsapp:hover { background: #22231F; }
+
+.topo__voltar {  /* botão de voltar que fica no lugar do menu na página da política de privacidade */
+  padding: 9px 18px;
+  border: 1px solid var(--ouro-claro);
+  border-radius: 999px;
+  color: #F3DFAF;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topo__voltar:hover { color: #FFFFFF; }
+@media (max-width: 480px) {  /* em celular bem pequeno fica só "Voltar", senão não cabe do lado da logo */
+  .topo__voltar-extra { display: none; }
+}
+
+.menu-botao {  /* botão "Menu", que só aparece em tela menor */
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 14px;
+  background: transparent;
+  color: #F3DFAF;
+  border: 1px solid #4A4436;
+  border-radius: 999px;
+  font: 600 0.9rem var(--sans);
+  cursor: pointer;
+}
+.menu-botao svg { width: 22px; height: 22px; }
+
+@media (max-width: 1180px) {  /* abaixo de 1180px o menu não cabia numa linha, então fiz ele virar uma gaveta que abre embaixo do topo */
+  .menu-botao { display: inline-flex; }
+  .menu {
+    position: absolute;
+    top: 100%;   /* começa logo abaixo da faixa do topo */
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px 16px 20px;
+    background: var(--carvao);
+    border-bottom: 2px solid var(--ouro);
+  }
+  .menu.aberto { display: flex; }   /* quem coloca a classe "aberto" é o site.js, quando a pessoa clica no botão */
+  .menu a {
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--carvao-linha);
+    font-size: 1rem;
+  }
+  .menu .menu__whatsapp {
+    margin-top: 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--ouro-claro);
+  }
+}
+
+.avisos {  /* faixa de avisos logo abaixo do topo, o texto vem da aba Avisos da planilha */
+  background: var(--linho);
+  border-bottom: 1px solid var(--linha);
+}
+.avisos__lista { padding: 10px 0; }
+.avisos__item {
+  margin: 0;
+  padding: 4px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+.avisos__item a { font-weight: 600; margin-left: 6px; }
+
+.inicio { padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 6vw, 80px); }   /* abertura. o clamp é (mínimo, ideal, máximo), aí o espaço cresce com a tela sem passar do limite */
+.inicio__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);   /* deixei a coluna do texto mais larga que a da foto */
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.inicio.sem-foto .inicio__grade { grid-template-columns: minmax(0, 1fr); }   /* sem foto, o texto ocupa a largura toda */
+
+.inicio__apresentacao {
+  margin: 0 0 18px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.inicio__apresentacao small {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--texto-suave);
+}
+.inicio__titulo {
+  margin: 0;
+  max-width: 22ch;   /* ch é a largura de um caractere, então dá mais ou menos 22 letras por linha */
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 1.1rem + 2.2vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.inicio__titulo::after {  /* risquinho dourado embaixo do título */
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  margin-top: 22px;
+  background: var(--ouro);
+}
+.inicio__resumo {
+  margin: 22px 0 0;
+  max-width: 54ch;
+  font-size: 1.1rem;
+  color: var(--texto-suave);
+}
+.inicio__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.inicio__atendimento {
+  margin: 18px 0 0;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+
+.inicio__foto {  /* a foto tem uma moldura dourada deslocada pra trás */
+  position: relative;
+  isolation: isolate;   /* sem isso a moldura (que tem z-index -1) pode sumir atrás do fundo da seção */
+  width: 100%;
+  max-width: 360px;
+  justify-self: end;
+  margin: 0 14px 14px 0;   /* espaço pra moldura não ficar cortada */
+}
+.inicio__foto::before {
+  content: "";
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 1.5px solid var(--ouro);
+  z-index: -1;
+}
+.inicio__foto img {
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* foto sempre em pé, mesmo se a original for de outro formato */
+  object-fit: cover;     /* corta as sobras em vez de esticar a foto */
+  background: var(--linho);
+}
+.foto-vazia {  /* quadrado tracejado no lugar da foto, só no rascunho, enquanto a cliente não manda a foto */
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  padding: 24px;
+  background: #FFF6E0;
+  border: 1.5px dashed #B07A2A;
+  color: #5C3F0B;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.botao {  /* botões com altura mínima de 48px pra ficar fácil de apertar com o dedo */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+}
+.botao svg { width: 20px; height: 20px; flex: none; }
+.botao--principal { background: var(--vinho); color: #FFF7EC; }   /* botão vinho cheio */
+.botao--principal:hover { background: var(--vinho-escuro); color: #FFF7EC; }
+.botao--contorno { border-color: var(--vinho); color: var(--vinho); background: transparent; }   /* botão só com a borda */
+.botao--contorno:hover { background: var(--vinho-claro); }
+.botao--grande { min-height: 54px; padding: 14px 30px; font-size: 1.05rem; }   /* o botão maior, que eu uso no contato */
+
+.secao { padding: clamp(48px, 6vw, 80px) 0; }   /* as seções vão intercalando fundo branco e bege pra separar uma da outra */
+.secao--linho { background: var(--linho); }
+.secao__titulo {
+  margin: 0 0 26px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 1rem + 1.4vw, 2.1rem);
+  line-height: 1.1;
+}
+.secao__intro {
+  margin: -10px 0 28px;
+  max-width: 60ch;
+  color: var(--texto-suave);
+}
+
+.sobre {  /* quem vai atender: título de um lado e texto do outro */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(20px, 4vw, 56px);
+}
+.sobre .secao__titulo { margin-bottom: 0; }
+.sobre__texto p { margin: 0 0 16px; max-width: 64ch; }
+.sobre__texto p:last-child { margin-bottom: 0; }
+.sobre__especializacao { font-weight: 600; }
+
+.areas {  /* áreas de atuação, com uma linha separando cada área */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--linha);
+}
+.areas li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: 10px 40px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--linha);
+}
+.areas h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.areas p { margin: 0; color: var(--texto-suave); max-width: 60ch; }
+
+.passos {  /* os números 1, 2 e 3 do "como funciona" não estão no html, quem escreve é o próprio css com o counter */
+  list-style: none;
+  counter-reset: passo;   /* começa a contagem */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+.passos li { counter-increment: passo; }   /* soma 1 a cada passo */
+.passos li::before {
+  content: counter(passo);   /* aqui ele escreve o número */
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--serif);
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ouro-escuro);
+}
+.passos h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.passos p { margin: 0; color: var(--texto-suave); }
+
+.avaliacoes {  /* avaliações que vêm da planilha, em duas colunas no computador */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 56px;
+}
+.avaliacao { margin: 0; padding-top: 20px; border-top: 2px solid var(--ouro); }
+.avaliacao__texto { margin: 0; }
+.avaliacao__texto p {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+.avaliacao__autor {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+.avaliacao__nome { font-weight: 600; color: var(--tinta); }
+.avaliacoes__google { margin: 36px 0 0; font-weight: 600; }
+
+.videos {  /* vídeos que vêm da planilha. antes do clique só aparece a capa, assim o youtube só carrega se a pessoa quiser assistir */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+.video { margin: 0; }
+.video__capa, .video__quadro {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* formato de vídeo do youtube */
+  border: 0;
+}
+.video__capa {
+  position: relative;
+  padding: 0;
+  background: var(--carvao) center / cover no-repeat;
+  cursor: pointer;
+}
+.video__play {  /* bolinha vinho com o triângulo do play, no meio da capa */
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--vinho);
+  color: #FFF7EC;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.video__play svg { width: 26px; height: 26px; margin-left: 4px; fill: currentColor; }
+.video__titulo { display: block; margin-top: 10px; font-weight: 600; }
+.video__descricao { margin: 4px 0 0; color: var(--texto-suave); font-size: 0.95rem; }
+
+.alerta {  /* caixa do aviso contra golpe, em destaque com borda vinho */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px 20px;
+  align-items: start;
+  padding: clamp(22px, 3.5vw, 32px);
+  background: var(--vinho-claro);
+  border: 1.5px solid var(--vinho);
+  border-radius: 10px;
+}
+.alerta svg { width: 36px; height: 36px; color: var(--vinho); }
+.alerta h2 {
+  margin: 0 0 6px;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.alerta p { margin: 0; max-width: 70ch; }
+
+.contato {  /* contato: texto e botão de um lado, lista de canais do outro */
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+.contato__texto p { margin: 0 0 26px; max-width: 46ch; color: var(--texto-suave); }
+.canais {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--linha);
+}
+.canais li {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--linha);
+}
+.canais svg { width: 22px; height: 22px; margin-top: 3px; color: var(--ouro-escuro); }
+.canais strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--texto-suave); }
+.canais a, .canais span { font-weight: 600; overflow-wrap: anywhere; }   /* e-mail comprido quebra a linha em vez de estourar a tela */
+
+.rodape {  /* rodapé escuro, combinando com o topo */
+  background: var(--carvao);
+  color: #CFC6B6;
+  border-top: 2px solid var(--ouro);
+  padding: 36px 0 40px;
+  font-size: 0.95rem;
+}
+.rodape__grade {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px 40px;
+  align-items: center;
+}
+.rodape__marca img { height: 56px; width: auto; }
+.rodape__dados p { margin: 0; }
+.rodape a { color: #F3DFAF; }
+.rodape a:hover { color: #FFFFFF; }
+.rodape__final {
+  grid-column: 1 / -1;
+  margin: 6px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--carvao-linha);
+  font-size: 0.85rem;
+  color: #A69E90;
+}
+
+.flutuante {  /* botão flutuante do whatsapp (celular). escondo enquanto a abertura aparece porque lá já tem um botão igual */
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));   /* pra não ficar embaixo da barrinha do iphone */
+  z-index: 40;
+  display: none;   /* no computador ele não aparece, lá embaixo na parte do celular ele vira inline-flex */
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--vinho);
+  color: #FFF7EC;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(21, 22, 24, 0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.flutuante svg { width: 22px; height: 22px; }
+.flutuante:hover { color: #FFF7EC; background: var(--vinho-escuro); }
+.flutuante--oculto { opacity: 0; visibility: hidden; transform: translateY(12px); }   /* quem coloca e tira essa classe é o site.js */
+@media (prefers-reduced-motion: reduce) {
+  .flutuante { transition: none; }
+}
+
+.texto-legal { padding: clamp(40px, 6vw, 72px) 0; }   /* página da política de privacidade, que é só texto */
+.texto-legal .envoltorio { max-width: 760px; }        /* coluna mais estreita pra ficar mais fácil de ler */
+.texto-legal h1 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 1.1rem + 1.8vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.texto-legal h2 {
+  margin: 36px 0 8px;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.texto-legal p, .texto-legal li { max-width: 68ch; }
+.texto-legal .atualizacao { color: var(--texto-suave); font-size: 0.95rem; margin: 0 0 22px; }
+
+.sem-js { margin: 0; padding: 14px 16px; background: #FFF4D6; text-align: center; }   /* aviso de quando o javascript está desligado, fica no noscript do index.html */
+
+@media (max-width: 760px) {  /* celular e tablet pequeno: quase tudo vira uma coluna só */
+  body { font-size: 1rem; }
+  .inicio__grade { grid-template-columns: minmax(0, 1fr); }
+  .inicio__foto { max-width: 320px; justify-self: start; }
+  .inicio__acoes .botao { flex: 1 1 100%; }
+  .sobre, .contato { grid-template-columns: minmax(0, 1fr); }
+  .areas li { grid-template-columns: minmax(0, 1fr); padding: 20px 0; }
+  .passos { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .passos li::before { font-size: 2.8rem; }
+  .avaliacoes, .videos { grid-template-columns: minmax(0, 1fr); }
+  .alerta { grid-template-columns: minmax(0, 1fr); }
+  .rodape__grade { grid-template-columns: minmax(0, 1fr); }
+  .flutuante { display: inline-flex; }   /* aqui o botão flutuante passa a aparecer */
+  .rodape { padding-bottom: 92px; }      /* espaço pro botão flutuante não tampar o rodapé */
+}
+
+@media print {  /* na hora de imprimir somem o topo, o botão flutuante, os avisos e as capas dos vídeos */
+  .topo, .menu, .flutuante, .faixa-rascunho, .avisos, .video__capa { display: none !important; }
+  body { font-size: 12pt; }
+}
