@@ -239,18 +239,18 @@ a:hover { color: var(--vinho-escuro); }
 }
 .avisos__item a { font-weight: 600; margin-left: 6px; }
 
-.inicio { padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 6vw, 80px); }   /* abertura. o clamp é (mínimo, ideal, máximo), aí o espaço cresce com a tela sem passar do limite */
+  .inicio { padding: clamp(24px, 3vw, 40px) 0 clamp(48px, 6vw, 80px); }   /* abertura. diminuí o espaço de cima porque sobrava muito entre o topo e o nome dela. o clamp é (mínimo, ideal, máximo) */
 .inicio__grade {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);   /* deixei a coluna do texto mais larga que a da foto */
   gap: clamp(32px, 5vw, 64px);
-  align-items: center;
+  align-items: start;   /* o texto começa alinhado com o topo da foto, assim não sobra espaço em cima do nome */
 }
 .inicio.sem-foto .inicio__grade { grid-template-columns: minmax(0, 1fr); }   /* sem foto, o texto ocupa a largura toda */
 
 .inicio__apresentacao {
   margin: 0 0 18px;
-  font-size: 0.98rem;
+  font-size: 1.2rem;   /* aumentei o nome dela pra ter mais destaque */
   font-weight: 600;
   line-height: 1.5;
 }

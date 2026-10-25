@@ -37,7 +37,13 @@ window.SITE = {
   especializacao: "",                   // só vou preencher se ela tiver o título, porque pela regra da OAB não pode dizer especialista sem ter
   foto: "",                             // quando a foto chegar vai ficar "assets/img/foto-dayara.jpg"
 
-  areas: [  // pra colocar uma área eu copio o modelo de baixo, tiro as // do começo e preencho. vazia, a seção some na versão final
+  areas: [  // coloquei previdenciário primeiro porque é a área principal dela, e o planejamento logo depois pra ele aparecer bem
+    { titulo: "Direito Previdenciário", texto: "Aposentadorias, benefícios do INSS e pensão por morte, do pedido à revisão." },
+    { titulo: "Planejamento previdenciário", texto: "Análise dos seus documentos e do tempo de contribuição para planejar a aposentadoria: quando é possível se aposentar e por qual regra." },
+    { titulo: "Direito de Família", texto: "Pensão alimentícia: pedido, revisão e cobrança." },
+    { titulo: "Direito do Consumidor", texto: "Problemas com compras, serviços, bancos e cobranças indevidas." },
+    { titulo: "Direito Civil", texto: "Questões cíveis em geral, como contratos e indenizações." },
+    // pra colocar outra área eu copio esse modelo, tiro as // do começo e preencho:
     // { titulo: "Nome da área", texto: "Uma ou duas frases explicando o que ela faz nessa área." },
   ],
 
