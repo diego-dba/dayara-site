@@ -557,7 +557,7 @@ a:hover { color: var(--vinho-escuro); }
   color: #A69E90;
 }
 
-.flutuante {  /* botão flutuante do whatsapp (celular). escondo enquanto a abertura aparece porque lá já tem um botão igual */
+  .flutuante {  /* botão flutuante do whatsapp (celular). escondo enquanto o botão grande da abertura está na tela, pra não ficar dois iguais */
   position: fixed;
   right: 16px;
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));   /* pra não ficar embaixo da barrinha do iphone */
@@ -604,20 +604,32 @@ a:hover { color: var(--vinho-escuro); }
 .sem-js { margin: 0; padding: 14px 16px; background: #FFF4D6; text-align: center; }   /* aviso de quando o javascript está desligado, fica no noscript do index.html */
 
 @media (max-width: 760px) {  /* celular e tablet pequeno: quase tudo vira uma coluna só */
-  body { font-size: 1rem; }
-  .inicio__grade { grid-template-columns: minmax(0, 1fr); }
-  .inicio__foto { max-width: 320px; justify-self: start; }
-  .inicio__acoes .botao { flex: 1 1 100%; }
-  .sobre, .contato { grid-template-columns: minmax(0, 1fr); }
-  .areas li { grid-template-columns: minmax(0, 1fr); padding: 20px 0; }
-  .passos { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-  .passos li::before { font-size: 2.8rem; }
-  .avaliacoes, .videos { grid-template-columns: minmax(0, 1fr); }
-  .alerta { grid-template-columns: minmax(0, 1fr); }
-  .rodape__grade { grid-template-columns: minmax(0, 1fr); }
-  .flutuante { display: inline-flex; }   /* aqui o botão flutuante passa a aparecer */
-  .rodape { padding-bottom: 92px; }      /* espaço pro botão flutuante não tampar o rodapé */
-}
+   body { font-size: 1rem; }
+   .inicio__grade { grid-template-columns: auto minmax(0, 1fr); column-gap: 20px; row-gap: 0; align-items: center; }   /* no celular a foto fica pequena, do lado do nome, em vez de enorme lá embaixo */
+   .inicio__grade > div { display: contents; }   /* com o contents os textos da abertura entram direto no grid, aí a foto consegue ficar do lado do nome */
+   .inicio__foto { grid-column: 1; grid-row: 1; width: 84px; margin: 0 6px 24px 0; justify-self: start; }   /* a mesma foto com moldura, só que em miniatura */
+   .inicio__foto::before { inset: 6px -6px -6px 6px; }   /* moldura menor pra acompanhar o tamanho da foto */
+   .foto-vazia { padding: 0; font-size: 0; }   /* no rascunho fica só o quadro tracejado, porque o texto não cabe */
+   .inicio__apresentacao { grid-column: 2; grid-row: 1; }
+   .inicio.sem-foto .inicio__apresentacao { grid-column: 1; }   /* se não tiver foto, o nome volta pro começo da linha */
+   .inicio__titulo, .inicio__resumo, .inicio__acoes, .inicio__atendimento { grid-column: 1 / -1; }   /* o resto da abertura ocupa a largura toda */
+   .inicio__acoes .botao { flex: 1 1 100%; }
+   .sobre, .contato { grid-template-columns: minmax(0, 1fr); }
+   .areas li { grid-template-columns: minmax(0, 1fr); padding: 20px 0; }
+   .passos { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+   .passos li { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 12px; }   /* no celular o número fica do lado do título, e não em cima */
+   .passos li::before { grid-row: 1 / span 2; margin: 0; font-size: 2.6rem; font-variant-numeric: lining-nums; }   /* lining-nums deixa os números da mesma altura */
+   .passos h3, .passos p { grid-column: 2; }
+   .avaliacoes, .videos { grid-template-columns: minmax(0, 1fr); }
+   .alerta { grid-template-columns: auto minmax(0, 1fr); gap: 12px 14px; align-items: center; }   /* no celular o ícone fica do lado do título, sozinho em cima parecia erro */
+   .alerta > div { display: contents; }   /* mesmo truque da abertura: o título e o texto entram direto no grid */
+   .alerta svg { width: 30px; height: 30px; }
+   .alerta h2 { margin: 0; }
+   .alerta p { grid-column: 1 / -1; }
+   .rodape__grade { grid-template-columns: minmax(0, 1fr); }
+   .flutuante { display: inline-flex; }   /* aqui o botão flutuante passa a aparecer */
+   .rodape { padding-bottom: 92px; }      /* espaço pro botão flutuante não tampar o rodapé */
+ }
 
 @media print {  /* na hora de imprimir somem o topo, o botão flutuante, os avisos e as capas dos vídeos */
   .topo, .menu, .flutuante, .faixa-rascunho, .avisos, .video__capa { display: none !important; }

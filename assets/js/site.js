@@ -175,7 +175,7 @@
   }
 
   var flutuante = document.querySelector('.flutuante');
-  var abertura = document.getElementById('inicio');
+  var abertura = document.querySelector('.inicio__acoes') || document.getElementById('inicio');
   if (flutuante && abertura && 'IntersectionObserver' in window) {
     flutuante.classList.add('flutuante--oculto');
     new IntersectionObserver(function (entradas) {
