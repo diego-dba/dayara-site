@@ -374,7 +374,7 @@ a:hover { color: var(--vinho-escuro); }
 .sobre .secao__titulo { margin-bottom: 0; }
 .sobre__texto p { margin: 0 0 16px; max-width: 64ch; }
 .sobre__texto p:last-child { margin-bottom: 0; }
-.sobre__especializacao { font-weight: 600; }
+.sobre__texto .sobre__especializacao { margin-top: 16px; font-weight: 600; }   /* dei um respiro entre o texto dela e as pós-graduações */
 
 .areas {  /* áreas de atuação, com uma linha separando cada área */
   list-style: none;

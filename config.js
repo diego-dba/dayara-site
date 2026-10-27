@@ -30,20 +30,19 @@ window.SITE = {
 
   // essa é a frase grande da abertura (o h1 da página)
   titulo: "Atendimento jurídico online e presencial, com hora marcada, em Ribeirão Preto/SP.",
-  resumo: "",                           // 1 ou 2 frases com o que ela trabalha e pra quem, ainda falta a cliente me passar
-  atendimento: "Online, por videochamada, e presencial com agendamento em Ribeirão Preto/SP.",
+  resumo: "Advocacia previdenciária, de família e sucessões e do consumidor.",   // sugestão minha a partir das áreas que a cliente mandou, ela ainda pode trocar
+  atendimento: "Online, por videochamada, e presencial em um coworking de Ribeirão Preto/SP, com hora marcada.",
   regioes: "",                          // tipo "Ribeirão Preto e região", ainda falta a cliente confirmar
-  sobre: "",                            // trajetória e formação. quando eu deixo uma linha em branco no meio, vira outro parágrafo no site
-  especializacao: "",                   // só vou preencher se ela tiver o título, porque pela regra da OAB não pode dizer especialista sem ter
+  // texto que a cliente mandou. o \n\n no meio quebra em outro parágrafo no site
+  sobre: "Atuo há mais de 4 anos nas áreas previdenciária, de família e do consumidor. Minha trajetória inclui anos em um escritório com grande volume de demandas, onde desenvolvi organização, agilidade e cuidado com o cliente em cada processo.\n\nNo atendimento, ouço a sua situação, analiso os documentos e explico as possibilidades de cada caso.",
+  especializacao: "Pós-graduações em Seguridade Social, Planejamento Previdenciário e Contratos.",   // ela tem o título dessas três, então pela regra da OAB pode aparecer
   foto: "assets/img/foto-dayara.jpg",                // escolhi a foto em pé porque ela olha pra frente, como se olhasse pra quem abre o site
   fotoCelular: "assets/img/foto-dayara-rosto.jpg",   // no celular a foto fica pequena, então uso um recorte só do rosto e dos ombros
 
-  areas: [  // coloquei previdenciário primeiro porque é a área principal dela, e o planejamento logo depois pra ele aparecer bem
-    { titulo: "Direito Previdenciário", texto: "Aposentadorias, benefícios do INSS e pensão por morte, do pedido à revisão." },
-    { titulo: "Planejamento previdenciário", texto: "Análise dos seus documentos e do tempo de contribuição para planejar a aposentadoria: quando é possível se aposentar e por qual regra." },
-    { titulo: "Direito de Família", texto: "Pensão alimentícia: pedido, revisão e cobrança." },
-    { titulo: "Direito do Consumidor", texto: "Problemas com compras, serviços, bancos e cobranças indevidas." },
-    { titulo: "Direito Civil", texto: "Questões cíveis em geral, como contratos e indenizações." },
+  areas: [  // segui as áreas que a cliente mandou, com o previdenciário primeiro porque é a principal dela
+    { titulo: "Direito Previdenciário", texto: "Benefícios, aposentadorias e planejamento previdenciário." },
+    { titulo: "Direito de Família e Sucessões", texto: "Inventário, reconhecimento de união estável e demais demandas familiares." },
+    { titulo: "Direito do Consumidor", texto: "Defesa dos direitos do consumidor." },
     // pra colocar outra área eu copio esse modelo, tiro as // do começo e preencho:
     // { titulo: "Nome da área", texto: "Uma ou duas frases explicando o que ela faz nessa área." },
   ],
