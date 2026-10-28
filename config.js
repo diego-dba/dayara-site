@@ -13,7 +13,7 @@
 
 window.SITE = {
 
-  modoRascunho: true,  // enquanto estiver true aparece a faixa amarela e os [PREENCHER], vou trocar pra false quando for divulgar
+  modoRascunho: false,  // troquei pra false quando o site ficou pronto (out/2026). se eu voltar pra true, aparecem de novo a faixa amarela e os [PREENCHER]
 
   nome: "Dayara Alves",  // daqui até a cidade são os dados da cliente, que aparecem na abertura, no contato e no rodapé
   tratamento: "Dra.",
@@ -26,13 +26,14 @@ window.SITE = {
   // essa é a mensagem que já aparece escrita quando a pessoa clica no botão do whatsapp
   mensagemWhatsApp: "Olá, Dra. Dayara! Vim pelo site e gostaria de agendar um atendimento.",
   instagram: "dayara_alves",            // deixei sem o @ porque o site coloca sozinho
-  email: "",                            // ainda está vazio, quando tiver eu coloco aqui, tipo "contato@dayara.adv.br"
+  email: "contato@dayara.adv.br",       // e-mail da cliente no zoho mail, é o que aparece no contato do site
+  emailPrivacidade: "privacidade@dayara.adv.br",  // e-mail só pros pedidos da LGPD, quem cuida sou eu. aparece na política de privacidade
 
   // essa é a frase grande da abertura (o h1 da página)
   titulo: "Atendimento jurídico online e presencial, com hora marcada, em Ribeirão Preto/SP.",
   resumo: "Advocacia previdenciária, de família e sucessões e do consumidor.",   // sugestão minha a partir das áreas que a cliente mandou, ela ainda pode trocar
-  atendimento: "Online, por videochamada, e presencial em um coworking de Ribeirão Preto/SP, com hora marcada.",
-  regioes: "",                          // tipo "Ribeirão Preto e região", ainda falta a cliente confirmar
+  atendimento: "Online, por videochamada, e presencial em Ribeirão Preto/SP, com hora marcada.",
+  regioes: "",                          // deixei vazio de propósito: online ela atende gente de qualquer lugar, até de fora do Brasil. vazio, esse item some do contato
   // texto que a cliente mandou. o \n\n no meio quebra em outro parágrafo no site
   sobre: "Atuo há mais de 4 anos nas áreas previdenciária, de família e do consumidor. Minha trajetória inclui anos em um escritório com grande volume de demandas, onde desenvolvi organização, agilidade e cuidado com o cliente em cada processo.\n\nNo atendimento, ouço a sua situação, analiso os documentos e explico as possibilidades de cada caso.",
   especializacao: "Pós-graduações em Seguridade Social, Planejamento Previdenciário e Contratos.",   // ela tem o título dessas três, então pela regra da OAB pode aparecer
@@ -67,7 +68,8 @@ window.SITE = {
 
   linkAvaliacoesGoogle: "",  // link das avaliações da cliente no google, vou colocar quando ela tiver o perfil
 
-  creditoDesenvolvedor: "",  // crédito no rodapé, tipo "Site por Diego". deixei vazio por enquanto, aí ele não aparece
+  creditoDesenvolvedor: "Site por Diego",  // a cliente autorizou o crédito no primeiro ano, que é grátis. em nov/2027 converso com ela de novo
+  emailDesenvolvedor: "fessor.dba@gmail.com",  // meu e-mail profissional (fora do domínio da cliente). preenchido, o "Site por Diego" vira link; vazio, fica só o texto
 
   secoes: {  // aqui eu ligo e desligo as partes do site (true aparece, false some), assim não preciso apagar nada do html
     sobre: true,

@@ -30,6 +30,7 @@
     return n === 'sim' || n === 's' || n === 'x' || n === 'true' || n === 'yes';
   }
   function urlSegura(v) { v = txt(v); return /^https?:\/\//i.test(v) ? v : ''; }
+  function mailto(v) { v = txt(v); return v ? 'mailto:' + v : ''; }
   function criar(tag, classe, texto) {
     var e = document.createElement(tag);
     if (classe) e.className = classe;
@@ -95,7 +96,9 @@
   var links = {
     whatsapp: numero ? 'https://wa.me/' + numero + (mensagem ? '?text=' + encodeURIComponent(mensagem) : '') : '',
     instagram: instagram ? 'https://www.instagram.com/' + instagram + '/' : '',
-    email: txt(S.email) ? 'mailto:' + txt(S.email) : '',
+    email: mailto(S.email),
+    emailPrivacidade: mailto(S.emailPrivacidade),
+    emailDesenvolvedor: mailto(S.emailDesenvolvedor),
     avaliacoesGoogle: urlSegura(S.linkAvaliacoesGoogle)
   };
   todos('[data-link]').forEach(function (n) {

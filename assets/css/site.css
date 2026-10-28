@@ -496,6 +496,8 @@ a:hover { color: var(--vinho-escuro); }
   background: var(--vinho-claro);
   border: 1.5px solid var(--vinho);
   border-radius: 10px;
+  max-width: 880px;      /* no computador a caixa ocupava a largura toda e o texto quebrava bem antes do fim, parecia erro. agora a caixa fica do tamanho do texto */
+  margin-inline: auto;   /* e fica no meio da página */
 }
 .alerta svg { width: 36px; height: 36px; color: var(--vinho); }
 .alerta h2 {
@@ -505,7 +507,7 @@ a:hover { color: var(--vinho-escuro); }
   font-weight: 600;
   line-height: 1.15;
 }
-.alerta p { margin: 0; max-width: 70ch; }
+.alerta p { margin: 0; }
 
 .contato {  /* contato: texto e botão de um lado, lista de canais do outro */
   display: grid;
@@ -549,6 +551,7 @@ a:hover { color: var(--vinho-escuro); }
 .rodape__dados p { margin: 0; }
 .rodape a { color: #F3DFAF; }
 .rodape a:hover { color: #FFFFFF; }
+.rodape a:not([href]) { color: inherit; }   /* o "Site por Diego" sem e-mail não é link, então fica da cor do texto em vez de parecer clicável */
 .rodape__final {
   grid-column: 1 / -1;
   margin: 6px 0 0;

@@ -37,7 +37,7 @@
     </div>
   </header>
 
-  <main id="conteudo" class="texto-legal">  <!-- texto da política. a cliente ainda precisa revisar antes de eu divulgar o site -->
+  <main id="conteudo" class="texto-legal">  <!-- texto da política. conferido com a cliente antes de divulgar o site (out/2026) -->
     <div class="envoltorio">
       <h1>Política de privacidade</h1>
       <p class="atualizacao">Atualizada em outubro de 2026.</p>  <!-- se eu mudar o texto, atualizo essa data -->
@@ -61,8 +61,8 @@
       <p>O provedor de hospedagem pode registrar dados técnicos de acesso, como endereço IP, data, hora e navegador, para manter o site seguro e funcionando.</p>
 
       <h2>Seus direitos</h2>
-      <!-- o telefone e o e-mail vêm do config.js. na versão final, se o e-mail estiver vazio, o pedaço "ou pelo e-mail" some -->
-      <p>Pela Lei Geral de Proteção de Dados (Lei nº 13.709/2018, art. 18), você pode pedir a confirmação, o acesso, a correção ou a eliminação dos seus dados, entre outros direitos. Para isso, fale pelo WhatsApp <a href="index.html#contato" data-link="whatsapp" data-campo="telefone" target="_blank" rel="noopener"></a><span class="se-email"> ou pelo e-mail <a href="#" data-link="email" data-campo="email" data-ocultar=".se-email" data-rotulo="e-mail (opcional)"></a></span>.</p>
+      <!-- esses pedidos chegam só pelo e-mail de privacidade (emailPrivacidade do config.js), que quem cuida sou eu. não coloquei whatsapp aqui de propósito -->
+      <p>Pela Lei Geral de Proteção de Dados (Lei nº 13.709/2018, art. 18), você pode pedir a confirmação, o acesso, a correção ou a eliminação dos seus dados, entre outros direitos. <span class="se-privacidade">Para isso, ou para tirar dúvidas sobre os seus dados, escreva para <a href="#" data-link="emailPrivacidade" data-campo="emailPrivacidade" data-ocultar=".se-privacidade" data-rotulo="e-mail de privacidade"></a>.</span></p>
     </div>
   </main>
 
@@ -79,7 +79,7 @@
         <p><span data-campo="oab"></span>, <span data-campo="cidade"></span></p>
       </div>
       <p><a href="index.html">Página inicial</a></p>
-      <p class="rodape__final">© <span data-ano></span> <span data-campo="marca"></span>. <span data-campo="creditoDesenvolvedor" data-opcional></span></p>
+      <p class="rodape__final">© <span data-ano></span> <span data-campo="marca"></span>. <a data-campo="creditoDesenvolvedor" data-link="emailDesenvolvedor" data-opcional></a></p>
     </div>
   </footer>
 </body>

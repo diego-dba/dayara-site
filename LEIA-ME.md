@@ -58,8 +58,28 @@ No Registro.br, como contato técnico, em DNS › Configurar zona DNS, eu crio:
 
 - 4 registros **A** pro próprio domínio: 185.199.108.153, 185.199.109.153, 185.199.110.153 e 185.199.111.153
 - 1 registro **CNAME** com o nome `www` apontando pra `diego-dba.github.io`
+- 1 registro **TXT** com o nome `_github-pages-challenge-diego-dba`, que o GitHub usa pra confirmar que o domínio é meu
 
 No GitHub, em Settings › Pages › Custom domain, coloco `dayara.adv.br` e salvo. Quando o GitHub liberar, marco **Enforce HTTPS**.
+O arquivo `CNAME` na raiz do projeto é o GitHub que cria quando eu salvo o domínio. Não posso apagar, senão o site sai do dayara.adv.br.
+O Registro.br não tem botão de editar: pra mudar uma entrada eu apago no X, crio de novo e clico em **Salvar alterações**.
+
+## E-mail (Zoho Mail)
+
+O e-mail do domínio fica no Zoho Mail, no plano grátis (até 5 contas, sem IMAP/POP, então é pelo site do Zoho ou pelo app).
+
+- `contato@dayara.adv.br`: e-mail da cliente, que aparece no contato do site. A senha é só dela.
+- `privacidade@dayara.adv.br`: e-mail dos pedidos da LGPD, que aparece na política de privacidade. Quem cuida sou eu.
+
+Na zona DNS do Registro.br ficam também os registros do e-mail. Se um dia eu mexer no DNS, não posso apagar esses:
+
+- 3 registros **MX** pro próprio domínio: `mx.zoho.com` (prioridade 10), `mx2.zoho.com` (20) e `mx3.zoho.com` (50)
+- **TXT** do SPF pro próprio domínio: `v=spf1 include:zohomail.com ~all`
+- **TXT** do DKIM com o nome `zmail._domainkey` (a chave fica no painel do Zoho, em DNS Mapping)
+- **TXT** do DMARC com o nome `_dmarc`: `v=DMARC1; p=quarantine`
+- **TXT** `zoho-verification=...` pro próprio domínio, que o Zoho usou pra confirmar que o domínio é nosso
+
+Pra conferir se está tudo certo, mando um e-mail pro meu Gmail e abro **Mostrar original**: SPF, DKIM e DMARC têm que estar com PASS.
 
 ## O que nunca vai pro GitHub
 
@@ -68,8 +88,10 @@ Mesmo assim, antes de cada commit eu confiro a lista de arquivos no VS Code.
 
 ## Antes de divulgar
 
-- a cliente precisa revisar os textos do `config.js`: a frase principal, os passos do atendimento e o aviso contra golpes
-- a cliente precisa revisar a política de privacidade
+Fiz tudo isso antes de lançar o site, em outubro de 2026. Deixei aqui pra lembrar se um dia eu voltar pro rascunho:
+
+- a cliente revisa os textos do `config.js`: a frase principal, os passos do atendimento e o aviso contra golpes
+- a cliente revisa a política de privacidade
 - nas áreas de atuação, só posso usar a palavra "especialista" se ela tiver o título (regra da OAB)
 - troco o `modoRascunho` pra `false`
 
