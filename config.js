@@ -28,6 +28,7 @@ window.SITE = {
   instagram: "dayara_alves",            // deixei sem o @ porque o site coloca sozinho
   email: "contato@dayara.adv.br",       // e-mail da cliente no zoho mail, é o que aparece no contato do site
   emailPrivacidade: "privacidade@dayara.adv.br",  // e-mail só pros pedidos da LGPD, quem cuida sou eu. aparece na política de privacidade
+  encarregadoNome: "Diego Batista Alves",  // encarregado da LGPD (sou eu, pelo termo de designação que a cliente assinou). a ANPD exige o nome no site, por isso aparece na política
 
   // essa é a frase grande da abertura (o h1 da página)
   titulo: "Atendimento jurídico online, de onde você estiver, e presencial em Ribeirão Preto/SP.",
