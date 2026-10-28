@@ -88,6 +88,12 @@ O token fica no `config.js` (`tokenContador`). Ele não é segredo, porque apare
 Com o token vazio, o contador desliga e a política de privacidade volta sozinha pro texto sem estatística.
 Quem usa bloqueador de anúncios não entra na contagem, então o número real é um pouco maior.
 
+## Google Search Console
+
+O site está cadastrado no Google Search Console, como propriedade de domínio (`dayara.adv.br`). Lá eu vejo em quais pesquisas o site aparece e quantos cliques ele recebe.
+Na zona DNS do Registro.br fica um registro **TXT** pro próprio domínio com o código `google-site-verification=...`. Não posso apagar esse: o Google confere de tempos em tempos e, sem ele, eu perco o acesso.
+O sitemap enviado é `https://dayara.adv.br/sitemap.xml`. Se eu criar uma página nova no site, coloco ela no `sitemap.xml` também.
+
 ## O que nunca vai pro GitHub
 
 O repositório é público. O `.gitignore` bloqueia planilhas, PDFs, documentos, arquivos `.env`, zips e as pastas `privado/`, `originais/`, `rascunhos/`, `backup/` e `clientes/`.
