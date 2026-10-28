@@ -166,6 +166,17 @@
 
   todos('[data-ano]').forEach(function (n) { n.textContent = String(new Date().getFullYear()); });
 
+  var tokenContador = txt(S.tokenContador);
+  todos('[data-contador]').forEach(function (n) {
+    var ligado = n.getAttribute('data-contador') === 'ligado';
+    n.hidden = tokenContador ? !ligado : ligado;
+  });
+  if (tokenContador) {
+    var contador = document.createElement('script');
+    contador.src = 'https://static.cloudflareinsights.com/beacon.min.js?token=' + encodeURIComponent(tokenContador);
+    document.head.appendChild(contador);
+  }
+
   var botaoMenu = document.querySelector('.menu-botao');
   var menu = document.getElementById('menu');
   if (botaoMenu && menu) {

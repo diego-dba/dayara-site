@@ -81,6 +81,13 @@ Na zona DNS do Registro.br ficam também os registros do e-mail. Se um dia eu me
 
 Pra conferir se está tudo certo, mando um e-mail pro meu Gmail e abro **Mostrar original**: SPF, DKIM e DMARC têm que estar com PASS.
 
+## Contador de visitas
+
+Uso o Cloudflare Web Analytics, que é grátis e não usa cookies. Os números ficam no painel da minha conta do Cloudflare, em **Web Analytics**, e não aparecem no site.
+O token fica no `config.js` (`tokenContador`). Ele não é segredo, porque aparece no código do site de qualquer jeito.
+Com o token vazio, o contador desliga e a política de privacidade volta sozinha pro texto sem estatística.
+Quem usa bloqueador de anúncios não entra na contagem, então o número real é um pouco maior.
+
 ## O que nunca vai pro GitHub
 
 O repositório é público. O `.gitignore` bloqueia planilhas, PDFs, documentos, arquivos `.env`, zips e as pastas `privado/`, `originais/`, `rascunhos/`, `backup/` e `clientes/`.

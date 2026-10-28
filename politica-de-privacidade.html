@@ -45,7 +45,9 @@
       <p>Este site apresenta o trabalho da <span data-campo="tratamento"></span> <span data-campo="nome"></span>, advogada inscrita na <span data-campo="oab"></span>, responsável pelos dados pessoais tratados por meio dele.</p>
 
       <h2>O que este site coleta</h2>
-      <p>O site não tem formulários, não usa cookies de rastreamento e não usa ferramentas de estatística ou de publicidade.</p>
+      <!-- o site.js mostra só um desses dois parágrafos: o "ligado" quando o tokenContador do config.js está preenchido -->
+      <p data-contador="desligado">O site não tem formulários, não usa cookies de rastreamento e não usa ferramentas de estatística ou de publicidade.</p>
+      <p data-contador="ligado" hidden>O site não tem formulários e não usa cookies de rastreamento nem ferramentas de publicidade. Para saber quantas pessoas visitam o site, ele usa o Cloudflare Web Analytics, que conta as visitas de forma anônima (página visitada, site de origem, país, tipo de aparelho e navegador), sem cookies e sem guardar dados que identifiquem você.</p>
 
       <h2>Quando você entra em contato</h2>
       <p>Os botões de WhatsApp, Instagram e e-mail abrem esses serviços, que têm as próprias políticas de privacidade. As informações que você enviar são usadas apenas para responder e prestar o atendimento solicitado, sob sigilo profissional.</p>

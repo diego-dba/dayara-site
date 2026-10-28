@@ -70,6 +70,7 @@ window.SITE = {
 
   creditoDesenvolvedor: "Site por Diego",  // a cliente autorizou o crédito no primeiro ano, que é grátis. em nov/2027 converso com ela de novo
   emailDesenvolvedor: "fessor.dba@gmail.com",  // meu e-mail profissional (fora do domínio da cliente). preenchido, o "Site por Diego" vira link; vazio, fica só o texto
+  tokenContador: "4175e912a5c9494c937e5f0c52984fa3",  // token do contador de visitas (cloudflare web analytics). não é segredo, ele aparece no código do site. vazio, o contador fica desligado
 
   secoes: {  // aqui eu ligo e desligo as partes do site (true aparece, false some), assim não preciso apagar nada do html
     sobre: true,
