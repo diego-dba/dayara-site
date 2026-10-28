@@ -30,7 +30,7 @@ window.SITE = {
   emailPrivacidade: "privacidade@dayara.adv.br",  // e-mail só pros pedidos da LGPD, quem cuida sou eu. aparece na política de privacidade
 
   // essa é a frase grande da abertura (o h1 da página)
-  titulo: "Atendimento jurídico online e presencial, com hora marcada, em Ribeirão Preto/SP.",
+  titulo: "Atendimento jurídico online, de onde você estiver, e presencial em Ribeirão Preto/SP.",
   resumo: "Advocacia previdenciária, de família e sucessões e do consumidor.",   // sugestão minha a partir das áreas que a cliente mandou, ela ainda pode trocar
   atendimento: "Online, por videochamada, e presencial em Ribeirão Preto/SP, com hora marcada.",
   regioes: "",                          // deixei vazio de propósito: online ela atende gente de qualquer lugar, até de fora do Brasil. vazio, esse item some do contato
