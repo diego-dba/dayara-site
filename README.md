@@ -26,6 +26,7 @@ assets/js/site.js             monta a página a partir do config.js
 assets/css/site.css           estilos (cores, fontes e escala no começo do arquivo)
 assets/img/                   logo, fotos, ícones e imagem de compartilhamento
 assets/fonts/                 Montserrat e Cormorant Garamond
+gas/numero-automatico.gs      script da planilha (Google Apps Script), para colar em Extensões › Apps Script
 CNAME                         domínio do GitHub Pages (não apagar)
 robots.txt, sitemap.xml       orientação para os buscadores
 ```
@@ -55,6 +56,9 @@ Depois abra `http://localhost:8000` no navegador. Abrir o `index.html` com dois 
 | `avisoGolpe` | aviso contra golpes |
 | `secoes` | liga (`true`) e desliga (`false`) partes do site |
 | `planilha` | links CSV das abas da planilha (opcional) |
+| `limiteVideos` | quantos vídeos aparecem no site (número, sem aspas) |
+| `videosFixos` | nomes das vagas fixas de vídeo, iguais às opções da coluna Fixo da planilha, na ordem do site |
+| `linkAvaliacoesGoogle`, `linkCanalYoutube` | links "Ver todas as avaliações no Google" e "Ver todos os vídeos no YouTube"; vazios, não aparecem |
 | `creditoDesenvolvedor`, `emailDesenvolvedor` | crédito no rodapé (com e-mail, vira link) |
 | `tokenContador` | token do Cloudflare Web Analytics; vazio desliga o contador |
 
@@ -69,11 +73,21 @@ Os textos vão sempre entre aspas. Dentro de um texto, `{telefone}`, `{nome}` e 
 
 ## Planilha (opcional): avisos, vídeos e avaliações
 
-1. Suba a planilha-modelo no Google Drive e salve como Planilhas Google, com a localidade Brasil.
-2. Em cada aba: Arquivo › Compartilhar › Publicar na Web › escolha a aba › Valores separados por vírgula (.csv) › Publicar.
-3. Cole cada link em `planilha`, no `config.js`, e ligue a seção em `secoes`.
+A planilha fica no Google Drive, fora do repositório (o `.gitignore` bloqueia planilhas), com as abas Avisos, Vídeos e Avaliações. Para ligar uma planilha ao site:
+
+1. Em Arquivo › Configurações, deixe a localidade Brasil.
+2. Em Extensões › Apps Script, apague o que estiver no editor, cole todo o conteúdo de `gas/numero-automatico.gs` e salve. É esse script que preenche o Número dos vídeos. Quando o arquivo mudar aqui, cole a versão nova lá do mesmo jeito.
+3. Em cada aba: Arquivo › Compartilhar › Publicar na Web › escolha a aba › Valores separados por vírgula (.csv) › Publicar.
+4. Cole cada link em `planilha`, no `config.js`, e ligue a seção em `secoes`.
 
 A planilha publicada fica pública, então só pode ter o que pode aparecer no site. Uma avaliação só aparece com Exibir e Autorizado marcados como SIM.
+
+**Vídeos.** A aba tem as colunas Número, Título, Link do YouTube, Descrição e Fixo.
+
+- Quando um link é colado, o script preenche o Número com o maior número + 1. Ele nunca muda, e é ele que diz qual vídeo é o mais novo.
+- A coluna Fixo é uma lista com os nomes de `videosFixos`. De cada vaga só aparece o vídeo de maior Número; os mais antigos da mesma vaga ficam guardados na planilha. Para trocar o vídeo de uma vaga, basta escolher a mesma vaga no vídeo novo.
+- O site mostra primeiro as vagas fixas, na ordem de `videosFixos`, e completa com os mais novos sem vaga até o `limiteVideos`. Os outros ficam guardados na planilha.
+- Linha sem Número (se o script não rodar) usa a posição da linha no lugar dele. A descrição aparece cortada em 3 linhas.
 
 ## Publicar uma mudança
 

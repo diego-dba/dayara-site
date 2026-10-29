@@ -68,6 +68,9 @@ window.SITE = {
   avisoGolpe: "A Dra. Dayara não pede pagamento de taxas para liberar valores de processos e só fala com clientes pelos contatos deste site. Se receber uma mensagem diferente disso, confirme antes pelo WhatsApp {telefone}.",
 
   linkAvaliacoesGoogle: "",  // link das avaliações da cliente no google, vou colocar quando ela tiver o perfil
+  linkCanalYoutube: "",  // link do canal da cliente no youtube. preenchido, aparece "ver todos os vídeos no youtube" embaixo dos vídeos
+  limiteVideos: 4,  // quantos vídeos aparecem no site: primeiro os fixos, depois os mais novos. número vai sem aspas
+  videosFixos: ["Sobre mim", "Como funciona o atendimento"],  // nomes das opções da coluna Fixo da planilha, na ordem em que aparecem no site. de cada uma só entra o vídeo de número maior
 
   creditoDesenvolvedor: "Site por Diego",  // a cliente autorizou o crédito no primeiro ano, que é grátis. em nov/2027 converso com ela de novo
   emailDesenvolvedor: "fessor.dba@gmail.com",  // meu e-mail profissional (fora do domínio da cliente). preenchido, o "Site por Diego" vira link; vazio, fica só o texto
@@ -78,7 +81,7 @@ window.SITE = {
     areas: true,
     comoFunciona: true,
     avaliacoes: false,      // só vou ligar depois que os clientes autorizarem
-    videos: false,          // vou ligar quando tiver vídeo na planilha
+    videos: true,          // com a aba Vídeos vazia, a seção e o link do menu somem sozinhos
     avisos: true,           // é a faixa de avisos embaixo do topo
     golpe: true,
     botaoFlutuante: true    // botão do whatsapp no canto da tela, só aparece no celular
@@ -86,7 +89,7 @@ window.SITE = {
 
   planilha: {  // links das abas publicadas em csv (arquivo > compartilhar > publicar na web > escolho a aba > csv)
     avisos: "",       // enquanto estiver vazio não carrega nada. o que eu publico lá fica público, então só coloco o que pode aparecer no site
-    videos: "",
+    videos: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQbQvE1ZEpLQnpcEzzge3nxHnSXw8YjRG6a2_HBP9U13CvoGCfEZ8_KQ4vmwOQm_7R4c83UokFiPUDs/pub?gid=1982781503&single=true&output=csv",
     avaliacoes: ""
   }
 };

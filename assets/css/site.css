@@ -450,7 +450,7 @@ a:hover { color: var(--vinho-escuro); }
   color: var(--texto-suave);
 }
 .avaliacao__nome { font-weight: 600; color: var(--tinta); }
-.avaliacoes__google { margin: 36px 0 0; font-weight: 600; }
+.avaliacoes__google, .videos__canal { margin: 36px 0 0; font-weight: 600; }   /* os links "ver todas as avaliações" e "ver todos os vídeos" ficam iguais */
 
 .videos {  /* vídeos que vêm da planilha. antes do clique só aparece a capa, assim o youtube só carrega se a pessoa quiser assistir */
   display: grid;
@@ -485,7 +485,16 @@ a:hover { color: var(--vinho-escuro); }
 }
 .video__play svg { width: 26px; height: 26px; margin-left: 4px; fill: currentColor; }
 .video__titulo { display: block; margin-top: 10px; font-weight: 600; }
-.video__descricao { margin: 4px 0 0; color: var(--texto-suave); font-size: 0.95rem; }
+.video__descricao {  /* descrição comprida vira 3 linhas com reticências, pros cards ficarem do mesmo tamanho */
+  margin: 4px 0 0;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
 
 .alerta {  /* caixa do aviso contra golpe, em destaque com borda vinho */
   display: grid;

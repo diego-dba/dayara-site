@@ -99,7 +99,8 @@
     email: mailto(S.email),
     emailPrivacidade: mailto(S.emailPrivacidade),
     emailDesenvolvedor: mailto(S.emailDesenvolvedor),
-    avaliacoesGoogle: urlSegura(S.linkAvaliacoesGoogle)
+    avaliacoesGoogle: urlSegura(S.linkAvaliacoesGoogle),
+    canalYoutube: urlSegura(S.linkCanalYoutube)
   };
   todos('[data-link]').forEach(function (n) {
     var url = links[n.getAttribute('data-link')];
@@ -371,11 +372,26 @@
   var listaVideos = document.getElementById('lista-videos');
   if (listaVideos && secoes.videos !== false) {
     carregarAba('videos').then(function (linhas) {
-      var videos = (linhas || [])
-        .filter(function (v) { return sim(v.exibir) && idYouTube(v.link_do_youtube); })
-        .sort(function (a, b) { return (parseFloat(a.ordem) || 999) - (parseFloat(b.ordem) || 999); });
+      var candidatos = (linhas || [])
+        .map(function (v, i) { v.posicao = parseFloat(v.numero) || i + 1; return v; })
+        .filter(function (v) { return idYouTube(v.link_do_youtube); });
+      var maisNovoPrimeiro = function (a, b) { return b.posicao - a.posicao; };
+      var vagas = (S.videosFixos || []).map(normalizar).filter(Boolean);
+      var escolhidos = [];
+      vagas.forEach(function (vaga) {
+        var fixo = candidatos
+          .filter(function (v) { return normalizar(v.fixo) === vaga; })
+          .sort(maisNovoPrimeiro)[0];
+        if (fixo && escolhidos.indexOf(fixo) < 0) escolhidos.push(fixo);
+      });
+      candidatos
+        .filter(function (v) { return vagas.indexOf(normalizar(v.fixo)) < 0; })
+        .sort(maisNovoPrimeiro)
+        .forEach(function (v) { escolhidos.push(v); });
+      var limite = parseInt(S.limiteVideos, 10);
+      var videos = limite > 0 ? escolhidos.slice(0, limite) : escolhidos;
       if (!videos.length) {
-        semConteudo('videos', listaVideos, 'vídeos: conecte a aba Vídeos da planilha e marque Exibir = SIM');
+        semConteudo('videos', listaVideos, 'vídeos: conecte a aba Vídeos da planilha e cole os links');
         return;
       }
       videos.forEach(function (v) { listaVideos.appendChild(cartaoVideo(v)); });
