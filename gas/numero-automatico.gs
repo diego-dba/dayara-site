@@ -67,5 +67,5 @@ function maiorNumero(aba, colNumero) {
 
 // tira acento, espaço sobrando e maiúscula: "Vídeos" vira "videos" e "Número" vira "numero"
 function normalizar(texto) {
-  return String(texto).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+  return String(texto).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
 }

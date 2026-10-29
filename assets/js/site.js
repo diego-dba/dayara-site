@@ -22,7 +22,7 @@
     return txt(v).replace(/\{(\w+)\}/g, function (_, chave) { return txt(dados[chave]); });
   }
   function normalizar(v) {
-    return txt(v).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    return txt(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
   }
   function sim(v) {
