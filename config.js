@@ -43,7 +43,7 @@ window.SITE = {
 
   areas: [  // segui as áreas que a cliente mandou, com o previdenciário primeiro porque é a principal dela
     { titulo: "Direito Previdenciário", texto: "Benefícios, aposentadorias e planejamento previdenciário." },
-    { titulo: "Direito de Família e Sucessões", texto: "Inventário, reconhecimento de união estável e demais demandas familiares." },
+    { titulo: "Direito de Família e Sucessões", texto: "Pensão alimentícia, divórcio, inventário, reconhecimento de união estável e demais demandas familiares." },
     { titulo: "Direito do Consumidor", texto: "Defesa dos direitos do consumidor." },
     // pra colocar outra área eu copio esse modelo, tiro as // do começo e preencho:
     // { titulo: "Nome da área", texto: "Uma ou duas frases explicando o que ela faz nessa área." },
